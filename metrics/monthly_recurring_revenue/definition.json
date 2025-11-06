@@ -1,0 +1,7 @@
+{
+    "name": "Monthly Recurring Revenue",
+    "abbreviation": "MRR",
+    "description": "The normalized monthly value of all active recurring revenue streams.",
+    "id": "monthly_recurring_revenue",
+    "version": "1.0.0"
+}

@@ -1,0 +1,7 @@
+{
+    "name": "Average Revenue Per Account",
+    "abbreviation": "ARPA",
+    "description": "The mean revenue per active customer account for a given period.",
+    "id": "average_revenue_per_account",
+    "version": "1.0.0"
+}
