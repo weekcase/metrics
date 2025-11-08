@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{.Metric.Name}} Definition | Weekcase Metrics Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <main>
+    <div class="center-content">
+      [<a href="/">Index</a>]
+
+      <h2>{{.Metric.Name}}</h2>
+      
+      <h3># Definition</h3>
+      <p>{{.Metric.Definition}}</p>
+
+      {{if .Metric.Abbreviation}}
+      <h3># Abbreviation</h3>
+      <p class="abbreviation">{{.Metric.Abbreviation}}</p>
+      {{end}}
+
+      {{if gt (len .DependencyNames) 0}}
+      <h3># Dependencies</h3>
+      <ul>
+        {{range $index, $name := .DependencyNames}}
+        <li><a href="/metrics/{{index $.Metric.Dependencies $index}}">{{$name}}</a></li>
+        {{end}}
+      </ul>
+      {{else}}
+      <h3># Dependencies</h3>
+      <p>None</p>
+      {{end}}
+
+      {{if gt (len .SourceNames) 0}}
+      <h3># Sources</h3>
+      <ul>
+        {{range $index, $name := .SourceNames}}
+        <li><a href="/metrics/{{$.Metric.ID}}/sources/{{index $.Metric.Sources $index}}">{{$name}}</a></li>
+        {{end}}
+      </ul>
+      {{end}}
+
+      <h3># Version</h3>
+      <p>{{.Metric.Version}}</p>
+    </div>
+  </main>
+
+  <footer>
+    Copyright © 2025 Weekcase. Licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a>.
+  </footer>
+</body>
+</html>

@@ -1,7 +1,0 @@
-{
-    "name": "Annual Recurring Revenue",
-    "abbreviation": "ARR",
-    "description": "The normalized annual value of all active recurring revenue streams, calculated as Monthly Recurring Revenue (MRR) multiplied by 12.",
-    "id": "annual_recurring_revenue",
-    "version": "1.0.0"
-}

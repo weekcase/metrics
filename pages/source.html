@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{.Source.Metric}} Specification | Weekcase Metrics Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <main>
+    <div class="center-content">
+      [<a href="/">Index</a>]
+
+      <h2>{{.Source.Source}} / {{.Source.Metric}}</h2>
+
+      <h3># URL</h3>
+      <p>{{.Source.URL}}</p>
+
+      {{if .Source.Filters}}
+      <h3># Filters</h3>
+      {{range $key, $value := .Source.Filters}}
+      <p><em>{{$key}}:</em></p>
+      <ul>
+        {{range $value}}
+        <li>{{.}}</li>
+        {{end}}
+      </ul>
+      {{end}}
+      {{end}}
+
+      <h3># Formula</h3>
+      <p>{{.Source.Formula}}</p>
+
+      <h3># Normalization</h3>
+      <p><em>period:</em></p>
+      <p>{{.Source.Normalization.Period}}</p>
+      <p><em>currency:</em></p>
+      <p>{{.Source.Normalization.Currency}}</p>
+
+      <h3># Version</h3>
+      <p>{{.Source.Version}}</p>
+    </div>
+  </main>
+
+  <footer>
+    Copyright © 2025 Weekcase. Licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a>.
+  </footer>
+</body>
+</html>

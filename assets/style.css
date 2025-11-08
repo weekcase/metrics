@@ -1,0 +1,52 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #101B3A;
+    color: #CCC;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+a {
+    color: inherit;
+}
+
+.center-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.center-content h1 {
+    padding-bottom: 10px;
+}
+
+.center-content h3 {
+  padding-top: 10px;
+}
+
+.center-content ul {
+    padding-left: 20px;
+    line-height: 1.5rem;
+    list-style-position: inside;
+}
+
+footer {
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 20px;
+}

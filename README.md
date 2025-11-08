@@ -1,8 +1,10 @@
 # Weekcase Metric Library
 
-An open-source library of standardized key business metrics, with human-readable definitions and machine-translatable specifications for key data sources.
+An open-source library of standardized key business metrics. It includes clear, versioned definitions and extraction specifications for key business systems.
 
-Weekcase Metric Library (WML) reduces ambiguity around common business metrics and their extraction from different data sources by providing a stable, versioned viewpoint.
+Weekcase Metric Library (WML) exists to reduce ambiguity around common business metrics by providing a stable, trusted viewpoint for consistent reporting across tools and teams.
+
+WML is published at [metrics.weekcase.net](https://metrics.weekcase.net). This repository contains both the metric definitions and related source specifications, and the web server that serves the published library.
 
 ## Philosophy
 
@@ -10,88 +12,82 @@ Weekcase Metric Library (WML) reduces ambiguity around common business metrics a
 - **Human and machine readable**: Clear definitions paired with practical specifications
 - **Source agnostic**: Multiple implementation options for each metric
 - **Dependency aware**: Explicit relationships between derived metrics
-- **Strictly versioned**: Immutable schemas ensure consistent interpretation across systems
+- **Strictly versioned**: Serious focus towards reliability and stability
 
 ## Structure
 
-### Metric Index (`index.json`)
+```
+metrics/
+  {metric_id}/
+    definition.cue          # Metric definition
+    sources/
+      {source_id}.cue       # Source-specific implementation specification
+```
 
-Each metric contains:
+### Example: Monthly Recurring Revenue
 
-- **name**: Display name
-- **id**: Unique identifier that matches the file tree
-- **sources**: Supported systems for this metric's data, with an empty array marking a derived metric
-- **dependencies**: For derived metrics, this array contains the metrics required for its calculation
+```
+metrics/
+  monthly_recurring_revenue/
+    definition.cue
+    sources/
+      stripe.cue
+```
 
-Example:
-```json
-{
-    "name": "Monthly Recurring Revenue",
-    "id": "monthly_recurring_revenue",
-    "sources": ["stripe"],
-    "dependencies": []
+## Format
+
+Metrics are defined using [CUE](https://cuelang.org/) for type-safe, human-readable configuration with built-in validation.
+
+### Metric Definition Example
+
+```cue
+name: "Monthly Recurring Revenue"
+definition: "The normalized monthly value of all active recurring revenue streams."
+abbreviation: "MRR"
+version: "1.0.0"
+dependencies: []
+sources: ["stripe"]
+```
+
+### Source Specification Example
+
+```cue
+metric: "Monthly Recurring Revenue"
+source: "Stripe"
+version: "1.0.0"
+url: "https://api.stripe.com/v1/subscriptions"
+filters: {
+    status: ["active", "past_due"]
+}
+formula: "Sum of (subscription.items.data[].price.unit_amount x subscription.items.data[].quantity) normalized to monthly equivalent."
+normalization: {
+    period: "price.recurring.interval normalized to monthly equivalent..."
+    currency: "price.unit_amount converted to base currency..."
 }
 ```
 
-### Metric Definitions (`metrics/{id}/definition.json`)
+## Tech Stack
 
-Each metric has a definition file conforming to [`schemas/definition.json`](schemas/definition.json):
+- **Format**: [CUE](https://cuelang.org/)
+- **Web**: Go, [Gin](https://github.com/gin-gonic/gin), HTML, CSS
 
-- **version**: Semantic version of the definition
-- **id**: Unique identifier
-- **name**: Display name
-- **abbreviation**: Standard abbreviation (or null)
-- **description**: What the metric represents
+## Running Locally
 
-Example:
-```json
-{
-    "version": "1.0.0",
-    "id": "monthly_recurring_revenue",
-    "name": "Monthly Recurring Revenue",
-    "abbreviation": "MRR",
-    "description": "The normalized monthly value of all active recurring revenue streams."
-}
+Start a local web server to open the library in your browser:
+
+```bash
+go mod tidy
+go run cmd/main.go
 ```
 
-### Source Specifications (`metrics/{id}/sources/{source}.json`)
+Visit `http://localhost:8080` once the server is running.
 
-For metrics with data sources, specifications conform to [`schemas/source.json`](schemas/source.json):
+## Contributing
 
-- **metric**: The metric identifier
-- **source**: Data source system (e.g., stripe)
-- **version**: Semantic version of this specification
-- **url**: API endpoint
-- **filters**: Query parameters
-- **formula**: Mathematical definition of the calculation
-- **normalization**: Rules for converting raw values to standard units
-
-Example:
-```json
-{
-    "metric": "monthly_recurring_revenue",
-    "source": "stripe",
-    "version": "1.0.0",
-    "url": "https://api.stripe.com/v1/subscriptions",
-    "filters": {
-        "status": ["active", "past_due"]
-    },
-    "formula": "Sum of (subscription.items.data[].price.unit_amount x subscription.items.data[].quantity) normalized to monthly equivalent.",
-    "normalization": {
-        "period": "...",
-        "currency": "..."
-    }
-}
-```
-
-## Schemas
-
-All definitions and source specifications conform to strict JSON schemas in [`schemas/`](schemas/):
-
-- [`definition.json`](schemas/definition.json): Schema for metric definitions
-- [`source.json`](schemas/source.json): Schema for source specifications
-
-Both schemas enforce immutability (`additionalProperties: false`) to ensure consistent interpretation across systems and versions.
+Contributions are welcomed. Please ensure:
+- Metric definitions follow the established schema
+- Source specifications are complete and accurate
+- Version numbers follow [Semantic Versioning](https://semver.org)
 
 ## License
 
