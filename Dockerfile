@@ -19,3 +19,4 @@ WORKDIR /weekcase
 COPY --from=builder /metrics/server .
 COPY --from=builder /metrics/assets ./assets
 COPY --from=builder /metrics/pages  ./pages
+COPY --from=builder /metrics/metrics ./metrics
