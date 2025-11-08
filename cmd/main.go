@@ -22,7 +22,7 @@ func main() {
 	})
 
 	// Metric detail page
-	r.GET("/metrics/:id", func(c *gin.Context) {
+	r.GET("/:id", func(c *gin.Context) {
 		metricID := c.Param("id")
 		metric := utils.GetMetric(metricID)
 
@@ -51,7 +51,7 @@ func main() {
 	})
 
 	// Source detail page
-	r.GET("/metrics/:id/sources/:source", func(c *gin.Context) {
+	r.GET("/:id/:source", func(c *gin.Context) {
 		metricID := c.Param("id")
 		sourceID := c.Param("source")
 

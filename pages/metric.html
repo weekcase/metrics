@@ -29,7 +29,7 @@
       <h3># Dependencies</h3>
       <ul>
         {{range $index, $name := .DependencyNames}}
-        <li><a href="/metrics/{{index $.Metric.Dependencies $index}}">{{$name}}</a></li>
+        <li><a href="/{{index $.Metric.Dependencies $index}}">{{$name}}</a></li>
         {{end}}
       </ul>
       {{else}}
@@ -41,7 +41,7 @@
       <h3># Sources</h3>
       <ul>
         {{range $index, $name := .SourceNames}}
-        <li><a href="/metrics/{{$.Metric.ID}}/sources/{{index $.Metric.Sources $index}}">{{$name}}</a></li>
+        <li><a href="/{{$.Metric.ID}}/{{index $.Metric.Sources $index}}">{{$name}}</a></li>
         {{end}}
       </ul>
       {{end}}
