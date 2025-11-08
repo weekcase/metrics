@@ -13,6 +13,11 @@ func main() {
 	r.Static("/assets", "./assets")
 	r.LoadHTMLGlob("pages/*.html")
 
+	// Health check endpoint
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": "pong"})
+	})
+
 	// Index page
 	r.GET("/", func(c *gin.Context) {
 		metrics := utils.LoadMetrics()
@@ -65,11 +70,6 @@ func main() {
 		c.HTML(http.StatusOK, "source.html", gin.H{
 			"Source": source,
 		})
-	})
-
-	// Health check endpoint
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"message": "pong"})
 	})
 
 	r.Run(":8080")
