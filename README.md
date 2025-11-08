@@ -85,9 +85,9 @@ Visit `http://localhost:8080` once the server is running.
 ## Contributing
 
 Contributions are welcomed. Please ensure:
-- Metric definitions follow the established schema
-- Source specifications are complete and accurate
-- Version numbers follow [Semantic Versioning](https://semver.org)
+1. Metric definitions follow the established schema
+2. Source specifications are complete and accurate
+3. Version numbers follow [Semantic Versioning](https://semver.org)
 
 ## License
 
