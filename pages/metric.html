@@ -2,9 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{.Metric.Name}} Definition | Weekcase Metrics Library</title>
+  <title>{{.Metric.Name}} ({{.Metric.Abbreviation}}) | WML</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101B3A">
+  <meta name="description" content="{{.Metric.Definition}}">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://metrics.weekcase.net/{{.Metric.ID}}">
+  <meta property="og:title" content="{{.Metric.Name}} ({{.Metric.Abbreviation}})">
+  <meta property="og:description" content="{{.Metric.Definition}}">
+  <meta property="og:image" content="https://metrics.weekcase.net/assets/og-image.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="https://metrics.weekcase.net/{{.Metric.ID}}">
+  <meta property="twitter:title" content="{{.Metric.Name}} ({{.Metric.Abbreviation}})">
+  <meta property="twitter:description" content="{{.Metric.Definition}}">
+  <meta property="twitter:image" content="https://metrics.weekcase.net/assets/og-image.png">
+
   <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="canonical" href="https://metrics.weekcase.net/{{.Metric.ID}}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">

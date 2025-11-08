@@ -68,7 +68,9 @@ func main() {
 		}
 
 		c.HTML(http.StatusOK, "source.html", gin.H{
-			"Source": source,
+			"Source":   source,
+			"MetricID": metricID,
+			"SourceID": sourceID,
 		})
 	})
 
