@@ -1,8 +1,8 @@
-# Weekcase Metric Library
+# Weekcase Metrics Library
 
 An open-source library of standardized key business metrics. It includes clear, versioned definitions and extraction specifications for key business systems.
 
-Weekcase Metric Library (WML) exists to reduce ambiguity around common business metrics by providing a stable, trusted viewpoint for consistent reporting across tools and teams.
+Weekcase Metrics Library (WML) exists to reduce ambiguity around common business metrics by providing a stable, trusted viewpoint for consistent reporting across tools and teams.
 
 WML is published at [metrics.weekcase.net](https://metrics.weekcase.net). This repository contains both the metric definitions and related source specifications, and the web server that serves the published library.
 

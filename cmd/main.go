@@ -11,7 +11,7 @@ import (
 func main() {
 	r := gin.Default()
 	r.SetTrustedProxies(nil)
-	
+
 	r.Static("/assets", "./assets")
 	r.LoadHTMLGlob("pages/*.html")
 
