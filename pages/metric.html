@@ -43,16 +43,18 @@
       <p class="abbreviation">{{.Metric.Abbreviation}}</p>
       {{end}}
 
-      {{if gt (len .DependencyNames) 0}}
-      <h3># Dependencies</h3>
-      <ul>
-        {{range $index, $name := .DependencyNames}}
-        <li><a href="/{{index $.Metric.Dependencies $index}}">{{$name}}</a></li>
+      {{if .Metric.Dependencies}}
+        {{if gt (len .DependencyNames) 0}}
+          <h3># Dependencies</h3>
+          <ul>
+            {{range $index, $name := .DependencyNames}}
+            <li><a href="/{{index $.Metric.Dependencies $index}}">{{$name}}</a></li>
+            {{end}}
+          </ul>
+        {{else}}
+          <h3># Dependencies</h3>
+          <p>None</p>
         {{end}}
-      </ul>
-      {{else}}
-      <h3># Dependencies</h3>
-      <p>None</p>
       {{end}}
 
       {{if gt (len .SourceNames) 0}}
@@ -64,8 +66,10 @@
       </ul>
       {{end}}
 
-      <h3># Definition Version</h3>
-      <p>{{.Metric.Version}}</p>
+      {{if .Metric.Version}}
+        <h3># Definition Version</h3>
+        <p>{{.Metric.Version}}</p>
+      {{end}}
     </div>
   </main>
 
